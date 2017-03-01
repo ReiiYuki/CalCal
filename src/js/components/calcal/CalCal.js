@@ -20,6 +20,14 @@ export default class App extends Component {
     })
   }
 
+  calculate(){
+    let totalCal = 0
+    this.state.order.forEach((food)=>{
+      totalCal += parseInt(food.cal)
+    })
+    return totalCal
+  }
+
   componentDidMount(){
     self = this
     service.getFood((data)=>{
@@ -90,7 +98,12 @@ export default class App extends Component {
               </div>
             </div>
             <div className="col">
-
+              <div className="card">
+                <div className="card-block">
+                  <h4 className="card-title">Total Calories</h4>
+                  <h5>{this.calculate()}</h5>
+                </div>
+              </div>
             </div>
           </div>
         </div>
