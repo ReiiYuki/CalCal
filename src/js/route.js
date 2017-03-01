@@ -17,9 +17,7 @@ export default ()=>{
       <Route path='/'
         component={App}>
         <IndexRoute component={CalCal}/>
-        <Route path="/admin">
-          <IndexRoute component={Admin}/>
-        </Route>
+        <Route path="/admin" component={Admin}/>
       </Route>
     </Router>
   )
