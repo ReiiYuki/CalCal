@@ -48,8 +48,14 @@ const getFood = (cb)=>{
   })
 }
 
+const removeFood = (id,cb)=>{
+  db.ref('food/'+id).remove()
+  getFood(cb)
+}
+
 export default {
   auth : auth,
   addFood : addFood,
-  getFood : getFood
+  getFood : getFood,
+  removeFood : removeFood
 }

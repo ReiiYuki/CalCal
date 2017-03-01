@@ -40,6 +40,16 @@ export default class Admin extends Component {
     })
   }
 
+  removeFood(e,id){
+    e.preventDefault()
+    let self = this
+    service.removeFood(id,(data)=>{
+      self.setState({
+        foods : data
+      })
+    })
+  }
+
   componentDidMount(){
     this.getFoodList()
   }
@@ -121,7 +131,7 @@ export default class Admin extends Component {
                                 <td>{food.name}</td>
                                 <td>{food.cal}</td>
                                 <td><button type="button" className="btn btn-info" >Update</button></td>
-                                <td><button type="button" className="btn btn-danger" >Delete</button></td>
+                                <td><button type="button" className="btn btn-danger" onClick={(e)=>this.removeFood(e,food.key)}>Delete</button></td>
                               </tr>
                             ))
                           }
