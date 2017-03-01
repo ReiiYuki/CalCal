@@ -120,17 +120,17 @@ export default class Admin extends Component {
                           <tr>
                             <th>Food Name</th>
                             <th>Calories</th>
-                            <th></th>
-                            <th></th>
+                            <th>Editor</th>
+                            <th>Delete</th>
                           </tr>
                         </thead>
                         <tbody>
                           {
                             this.state.foods.map((food)=>(
-                              <tr>
+                              <tr key={food.id}>
                                 <td>{food.name}</td>
                                 <td>{food.cal}</td>
-                                <td><button type="button" className="btn btn-info" >Update</button></td>
+                                <td>{food.writer}</td>
                                 <td><button type="button" className="btn btn-danger" onClick={(e)=>this.removeFood(e,food.key)}>Delete</button></td>
                               </tr>
                             ))

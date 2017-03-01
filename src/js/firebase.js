@@ -37,7 +37,7 @@ const addFood = (name,cal,writer,cb)=>{
 }
 
 const getFood = (cb)=>{
-  db.ref('food').on('value',(snapshot)=>{
+  db.ref('food').once('value',(snapshot)=>{
     let data = []
     snapshot.forEach((childSnapshot) => {
       let childData = childSnapshot.val();
