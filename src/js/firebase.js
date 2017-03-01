@@ -28,14 +28,27 @@ const auth = (cb)=>{
 }
 
 const updateFood = (name,cal,writer,cb)=>{
-  db.ref('food/'+name).set({
+  db.ref('food').push().set({
     name : name,
     cal : cal,
     writer : writer
+  })
+  getFood(cb)
+}
+
+const getFood = (cb)=>{
+  db.ref('food').on('value',(snapshot)=>{
+    let data = []
+    snapshot.forEach((childSnapshot) => {
+      const childData = childSnapshot.val();
+      data.push(childData)
+    })
+    cb(data)
   })
 }
 
 export default {
   auth : auth,
-  updateFood : updateFood
+  updateFood : updateFood,
+  getFood : getFood
 }

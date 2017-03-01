@@ -23,8 +23,8 @@ export default class Admin extends Component {
     e.preventDefault()
     const name = this.refs.form.name.value
     const cal = this.refs.form.cal.value
-    service.updateFood(name,cal,this.state.name,()=>{
-      console.log("success");
+    service.updateFood(name,cal,this.state.name,(data)=>{
+      console.log(data);
     })
   }
 
