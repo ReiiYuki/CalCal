@@ -19,13 +19,29 @@ export default class Admin extends Component {
     })
   }
 
-  updateFood(e){
+  addFood(e){
     e.preventDefault()
     const name = this.refs.form.name.value
     const cal = this.refs.form.cal.value
-    service.updateFood(name,cal,this.state.name,(data)=>{
-      console.log(data);
+    let self = this
+    service.addFood(name,cal,this.state.name,(data)=>{
+      self.setState({
+        foods : data
+      })
     })
+  }
+
+  getFoodList(){
+    let self = this
+    service.getFood((data)=>{
+      self.setState({
+        foods : data
+      })
+    })
+  }
+
+  componentDidMount(){
+    this.getFoodList()
   }
 
   render(){
@@ -83,9 +99,37 @@ export default class Admin extends Component {
                       </div>
                     </div>
                     <div className="col-md-2">
-                      <button type="button" className="btn btn-success" onClick={(e)=>this.updateFood(e)}>Add</button>
+                      <button type="button" className="btn btn-success" onClick={(e)=>this.addFood(e)}>Add</button>
                     </div>
                 </form>
+                {this.state.foods?
+                  <div className="row">
+                    <div className="col">
+                      <table className="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Food Name</th>
+                            <th>Calories</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {
+                            this.state.foods.map((food)=>(
+                              <tr>
+                                <td>{food.name}</td>
+                                <td>{food.cal}</td>
+                                <td><button type="button" className="btn btn-info" >Update</button></td>
+                                <td><button type="button" className="btn btn-danger" >Delete</button></td>
+                              </tr>
+                            ))
+                          }
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>:<div></div>
+                }
               </div>
             }
           </div>
