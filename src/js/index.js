@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import route from './route'
 
-class HelloWorld extends Component {
-  render(){
-    return (
-      <h1>Hello World</h1>
-    )
-  }
-}
-
-render (<HelloWorld/>, document.getElementById('app'))
+render (route(), document.getElementById('app'))
